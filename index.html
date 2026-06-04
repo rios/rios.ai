@@ -1330,6 +1330,51 @@
             .foot-links a:hover {
                 color: var(--accent);
             }
+            .foot-allrepos {
+                display: flex;
+                align-items: baseline;
+                justify-content: space-between;
+                gap: 24px;
+                padding: 28px 0 40px;
+                margin-bottom: 36px;
+                border-bottom: 1px solid var(--border);
+                text-decoration: none;
+                color: var(--fg);
+                flex-wrap: wrap;
+            }
+            .foot-allrepos:hover {
+                color: var(--accent);
+            }
+            .foot-allrepos:hover .foot-allrepos-url {
+                color: var(--accent);
+                border-color: var(--accent);
+            }
+            .foot-allrepos-label {
+                font-family: var(--font-display);
+                font-style: italic;
+                font-size: 28px;
+                letter-spacing: 0;
+                color: var(--fg);
+            }
+            .foot-allrepos-url {
+                font-family: var(--font-mono);
+                font-size: 12px;
+                letter-spacing: 0.08em;
+                color: var(--muted);
+                border-bottom: 1px solid transparent;
+                padding-bottom: 2px;
+                transition: color 0.2s, border-color 0.2s;
+            }
+            .ext-arrow {
+                font-size: 0.85em;
+                opacity: 0.7;
+                margin-left: 2px;
+            }
+            @media (max-width: 600px) {
+                .foot-allrepos-label {
+                    font-size: 22px;
+                }
+            }
 
             /* MOTION */
             @media (prefers-reduced-motion: no-preference) {
@@ -1368,6 +1413,7 @@
                     <span class="archive">/ ARCHIVE</span>
                 </a>
                 <div class="nav-links">
+                    <a href="https://github.com/rios" target="_blank" rel="noopener">GitHub <span class="ext-arrow">↗</span></a>
                     <a href="#tiers">Capabilities</a>
                     <a class="pill" href="#contact">Inquiries →</a>
                 </div>
@@ -1524,7 +1570,7 @@
                     <div class="cap-cat" id="cap-perception">
                         <div class="cap-cat-head">
                             <h3 class="cap-cat-name">AI Perception &amp; <em>Computer Vision</em></h3>
-                            <span class="cap-cat-count">7 entries</span>
+                            <span class="cap-cat-count">9 entries</span>
                         </div>
                         <div class="cap-list">
                             <article class="cap licensable">
@@ -1559,7 +1605,7 @@
                                     <span class="cap-maturity">Production</span>
                                 </div>
                                 <p class="cap-desc">Full training-to-deployment pipeline (Pix2Pose, ICCV 2019). Multi-camera batch inference with Detectron2, ClearML experiment tracking, BOP-format datasets, Docker reproducibility.</p>
-                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/pix2pose_train">pix2pose_train</a> · <a href="https://github.com/rios/pix2pose_ros">pix2pose_ros</a> · <a href="https://github.com/rios/pix2pose-clearml">pix2pose-clearml</a></div>
+                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/pix2pose_train">pix2pose_train</a> · <a href="https://github.com/rios/pix2pose_ros">pix2pose_ros</a> · <a href="https://github.com/rios/pix2pose_ros_msgs">pix2pose_ros_msgs</a> · <a href="https://github.com/rios/pix2pose-clearml">pix2pose-clearml</a></div>
                             </article>
                             <article class="cap licensable">
                                 <div class="cap-head">
@@ -1576,7 +1622,7 @@
                                     <span class="cap-maturity">Production</span>
                                 </div>
                                 <p class="cap-desc">ROS / ROS2 drivers for LUCID Triton RGB (Arena SDK), Lucid Helios ToF depth, FLIR Spinnaker, Luxonis OAK-D. Hardware triggering, timestamp filtering, buffered subscriptions with stale-data detection. Deployed across 4 production workcells.</p>
-                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/arena_camera_ros">arena_camera_ros</a> · <a href="https://github.com/rios/rios-depthai-ros">rios-depthai-ros</a> · <a href="https://github.com/rios/spinnaker_camera_ros2">spinnaker_camera_ros2</a> · <a href="https://github.com/rios/camera_control_msgs">camera_control_msgs</a></div>
+                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/arena_camera_ros">arena_camera_ros</a> · <a href="https://github.com/rios/arena_camera_ros2">arena_camera_ros2</a> · <a href="https://github.com/rios/rios-depthai-ros">rios-depthai-ros</a> · <a href="https://github.com/rios/spinnaker_camera_ros2">spinnaker_camera_ros2</a> · <a href="https://github.com/rios/camera_control_msgs">camera_control_msgs</a></div>
                             </article>
                             <article class="cap licensable">
                                 <div class="cap-head">
@@ -1586,12 +1632,30 @@
                                 </div>
                                 <p class="cap-desc">Real-time food defect classification on conveyor lines. MobileNetV3 / ResNet50 (6 architectures benchmarked). 3-class output with GradCAM debugging, 27ms inference, windowed majority voting. 50+ versioned datasets, deployed across 6 production lines.</p>
                             </article>
+                            <article class="cap open">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">YOLO ROS Deployment</h4>
+                                    <a class="cap-badge open" href="https://github.com/rios/dx_yolo_ros">Open source<span class="arrow">↗</span></a>
+                                    <span class="cap-maturity">Production</span>
+                                </div>
+                                <p class="cap-desc">YOLO detection wrapped as a first-class ROS node — published bounding boxes, batched multi-camera inference, parameterized model swap. Drives downstream tracking and grasp targeting.</p>
+                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/dx_yolo_ros">dx_yolo_ros</a> · <a href="https://github.com/rios/tracking_msgs">tracking_msgs</a></div>
+                            </article>
+                            <article class="cap open">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Visual Object Tracking</h4>
+                                    <a class="cap-badge open" href="https://github.com/rios/pysot_ros">Open source<span class="arrow">↗</span></a>
+                                    <span class="cap-maturity">Research</span>
+                                </div>
+                                <p class="cap-desc">PySOT single-object tracker wrapped for ROS. Bounding-box tracking with detection re-initialization for moving-conveyor scenarios.</p>
+                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/pysot_ros">pysot_ros</a></div>
+                            </article>
                         </div>
                     </div>
                     <div class="cap-cat" id="cap-motion">
                         <div class="cap-cat-head">
                             <h3 class="cap-cat-name">Robot Control &amp; <em>Motion</em></h3>
-                            <span class="cap-cat-count">6 entries</span>
+                            <span class="cap-cat-count">7 entries</span>
                         </div>
                         <div class="cap-list">
                             <article class="cap licensable">
@@ -1645,12 +1709,21 @@
                                 </div>
                                 <p class="cap-desc">Piezoelectric tactile sensor (XTS-1) — 14×37 taxel array at 3–17kHz, picoCoulomb force measurement, 10 thermistors, 13 strain gauges. Three-layer driver stack with PIMPL pattern. TactileNet (dual-finger 3D CNN) classifies grasp events from 100ms windows. Integrated with Robotiq 2-finger gripper and custom Cypress FX3 + PSoC + FPGA firmware.</p>
                             </article>
+                            <article class="cap open">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Motor &amp; Hopper Control</h4>
+                                    <a class="cap-badge open" href="https://github.com/rios/dx_motor">Open source<span class="arrow">↗</span></a>
+                                    <span class="cap-maturity">Production</span>
+                                </div>
+                                <p class="cap-desc">Generic motor driver abstractions, feed-hopper control logic, and the interface message packages shared across the dx_* stack — motor commands and status, hopper coordination, common message definitions.</p>
+                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/dx_motor">dx_motor</a> · <a href="https://github.com/rios/dx_motor_driver_msgs">dx_motor_driver_msgs</a> · <a href="https://github.com/rios/dx_msgs">dx_msgs</a> · <a href="https://github.com/rios/hopper_control_msgs">hopper_control_msgs</a></div>
+                            </article>
                         </div>
                     </div>
                     <div class="cap-cat" id="cap-platform">
                         <div class="cap-cat-head">
                             <h3 class="cap-cat-name">Edge AI <em>Platform</em></h3>
-                            <span class="cap-cat-count">5 entries</span>
+                            <span class="cap-cat-count">7 entries</span>
                         </div>
                         <div class="cap-list">
                             <article class="cap licensable">
@@ -1693,12 +1766,30 @@
                                 </div>
                                 <p class="cap-desc">Helm-based GitOps deployment with Rancher Fleet. Per-site configuration management, Kubernetes operator for edge CRDs, HashiCorp Vault for secrets, RClone for data sync. Multi-cluster management across geographically distributed customer sites.</p>
                             </article>
+                            <article class="cap open">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Teta — Dev Tooling Ecosystem</h4>
+                                    <a class="cap-badge open" href="https://github.com/rios/teta">Open source<span class="arrow">↗</span></a>
+                                    <span class="cap-maturity">Production</span>
+                                </div>
+                                <p class="cap-desc">Domain-agnostic developer tooling — project bootstrapping, app scaffolding, camera test harness, configuration management, diagnostics, code generation, and MCP integration for AI-assisted workflows. Seven repos forming a coherent dev environment.</p>
+                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/teta">teta</a> · <a href="https://github.com/rios/teta-app">teta-app</a> · <a href="https://github.com/rios/teta-camera">teta-camera</a> · <a href="https://github.com/rios/teta-config">teta-config</a> · <a href="https://github.com/rios/teta-diag">teta-diag</a> · <a href="https://github.com/rios/teta-generate">teta-generate</a> · <a href="https://github.com/rios/teta-mcp">teta-mcp</a></div>
+                            </article>
+                            <article class="cap open">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Edge Runtime Infrastructure</h4>
+                                    <a class="cap-badge open" href="https://github.com/rios/ros-docker-gui">Open source<span class="arrow">↗</span></a>
+                                    <span class="cap-maturity">Production</span>
+                                </div>
+                                <p class="cap-desc">Low-level glue for the edge stack — pinned CUDA installer scripts, ROS-with-GUI Docker images, Kubernetes NodePort controller for cluster-internal services, file sync for offline-tolerant deployments, and udev rule generation for industrial USB devices.</p>
+                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/cuda_installers">cuda_installers</a> · <a href="https://github.com/rios/ros-docker-gui">ros-docker-gui</a> · <a href="https://github.com/rios/rios-nodeport-controller">rios-nodeport-controller</a> · <a href="https://github.com/rios/rios-file-sync">rios-file-sync</a> · <a href="https://github.com/rios/udevcreator">udevcreator</a></div>
+                            </article>
                         </div>
                     </div>
                     <div class="cap-cat" id="cap-pipeline">
                         <div class="cap-cat-head">
                             <h3 class="cap-cat-name">ML Pipeline &amp; <em>Data Infrastructure</em></h3>
-                            <span class="cap-cat-count">4 entries</span>
+                            <span class="cap-cat-count">7 entries</span>
                         </div>
                         <div class="cap-list">
                             <article class="cap licensable">
@@ -1734,12 +1825,39 @@
                                 </div>
                                 <p class="cap-desc">Model registry with versioned deployment to edge devices. S3 distribution with SHA256 integrity verification. TensorRT optimization for Jetson / CUDA targets. Continuous model updates to 25+ deployed edge clusters.</p>
                             </article>
+                            <article class="cap open">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">ROS Bag &amp; Data Pipeline</h4>
+                                    <a class="cap-badge open" href="https://github.com/rios/rios_rosbag">Open source<span class="arrow">↗</span></a>
+                                    <span class="cap-maturity">Production</span>
+                                </div>
+                                <p class="cap-desc">Production data capture and curation — multi-topic rosbag recording, metadata extraction and indexing, configurable data collector for triggered captures, and shared utilities for parsing and replaying production traces.</p>
+                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/rios_rosbag">rios_rosbag</a> · <a href="https://github.com/rios/rosbag_metadata">rosbag_metadata</a> · <a href="https://github.com/rios/dx_data_collector">dx_data_collector</a> · <a href="https://github.com/rios/rios_data_utils">rios_data_utils</a></div>
+                            </article>
+                            <article class="cap open">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Model Benchmarking Harness</h4>
+                                    <a class="cap-badge open" href="https://github.com/rios/rios-roboflow-benchmarking">Open source<span class="arrow">↗</span></a>
+                                    <span class="cap-maturity">Validated</span>
+                                </div>
+                                <p class="cap-desc">Automated benchmarking harness for object detection models against Roboflow-hosted datasets. Reproducible eval reports, drift tracking across model versions, quality-metric interface messages for downstream consumption.</p>
+                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/rios-roboflow-benchmarking">rios-roboflow-benchmarking</a> · <a href="https://github.com/rios/quality_metrics_msgs">quality_metrics_msgs</a></div>
+                            </article>
+                            <article class="cap open">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Synthetic OCR Training Data</h4>
+                                    <a class="cap-badge open" href="https://github.com/rios/TextRecognitionDataGenerator">Open source<span class="arrow">↗</span></a>
+                                    <span class="cap-maturity">Research</span>
+                                </div>
+                                <p class="cap-desc">Programmatic generator for OCR training corpora — printed text on procedurally varied backgrounds, distortion / blur / noise pipelines, multilingual dictionaries. Fork of Belval/TRDG (MIT) with RIOS extensions.</p>
+                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/TextRecognitionDataGenerator">TextRecognitionDataGenerator</a></div>
+                            </article>
                         </div>
                     </div>
                     <div class="cap-cat" id="cap-operations">
                         <div class="cap-cat-head">
                             <h3 class="cap-cat-name">Production <em>Operations</em></h3>
-                            <span class="cap-cat-count">5 entries</span>
+                            <span class="cap-cat-count">6 entries</span>
                         </div>
                         <div class="cap-list">
                             <article class="cap licensable">
@@ -1783,12 +1901,21 @@
                                 </div>
                                 <p class="cap-desc">Camera FOV drift detection via multi-algorithm keypoint tracking, image quality assessment, critical-zone monitoring, ML-based template matching for baseline identification. Proactive issue detection across 25+ deployed edge devices.</p>
                             </article>
+                            <article class="cap open">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Diagnostic &amp; Doc Tooling</h4>
+                                    <a class="cap-badge open" href="https://github.com/rios/rosbridge-loadtester">Open source<span class="arrow">↗</span></a>
+                                    <span class="cap-maturity">Production</span>
+                                </div>
+                                <p class="cap-desc">Operator-facing infrastructure — rosbridge load tester for HMI capacity planning, Slab → Notion migration tool that moved the entire engineering knowledge base, Docusaurus templates for product documentation sites.</p>
+                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/rosbridge-loadtester">rosbridge-loadtester</a> · <a href="https://github.com/rios/slab_to_notion_importer">slab_to_notion_importer</a> · <a href="https://github.com/rios/docusaurus-templates">docusaurus-templates</a></div>
+                            </article>
                         </div>
                     </div>
                     <div class="cap-cat" id="cap-research">
                         <div class="cap-cat-head">
                             <h3 class="cap-cat-name">Published <em>Research</em></h3>
-                            <span class="cap-cat-count">4 entries</span>
+                            <span class="cap-cat-count">5 entries</span>
                         </div>
                         <div class="cap-list">
                             <article class="cap open">
@@ -1826,6 +1953,15 @@
                                 </div>
                                 <p class="cap-desc">Integrated implementation of GR-ConvNet (IROS 2020), MVP Grasp, and Visual Pushing-Grasping — combined into a single production-ready system. Research-to-production pipeline for grasping across object types.</p>
                                 <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/agnet">agnet</a></div>
+                            </article>
+                            <article class="cap open">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Dense Correspondence Networks</h4>
+                                    <a class="cap-badge open" href="https://github.com/rios/pytorch_dc2_ros">Open source<span class="arrow">↗</span></a>
+                                    <span class="cap-maturity">Research</span>
+                                </div>
+                                <p class="cap-desc">PyTorch implementation of dense correspondence learning (DC2) wrapped for ROS — pixel-level descriptors for category-level manipulation. Foundation work toward generalizable robotic grasping.</p>
+                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/pytorch_dc2_ros">pytorch_dc2_ros</a></div>
                             </article>
                         </div>
                     </div>
@@ -1869,17 +2005,23 @@
 
         <!-- =============================================================== FOOTER -->
         <footer>
-            <div class="wrap foot-row">
-                <div>
-                    <div class="foot-mark">
-                        RIOS<em> Intelligent Machines</em>
+            <div class="wrap">
+                <a class="foot-allrepos" href="https://github.com/rios" target="_blank" rel="noopener">
+                    <span class="foot-allrepos-label">All open-source repositories</span>
+                    <span class="foot-allrepos-url">github.com/rios <span class="ext-arrow">↗</span></span>
+                </a>
+                <div class="foot-row">
+                    <div>
+                        <div class="foot-mark">
+                            RIOS<em> Intelligent Machines</em>
+                        </div>
+                        <div>EST. 2018 · ARCHIVED 2026 · MENLO PARK, CA</div>
                     </div>
-                    <div>EST. 2018 · ARCHIVED 2026 · MENLO PARK, CA</div>
-                </div>
-                <div class="foot-links">
-                    <a href="https://github.com/rios">GitHub</a>
-                    <a href="#tiers">Capabilities</a>
-                    <a href="#contact">Inquiries</a>
+                    <div class="foot-links">
+                        <a href="https://github.com/rios" target="_blank" rel="noopener">GitHub <span class="ext-arrow">↗</span></a>
+                        <a href="#tiers">Capabilities</a>
+                        <a href="#contact">Inquiries</a>
+                    </div>
                 </div>
             </div>
         </footer>
