@@ -1,0 +1,1883 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>RIOS Intelligent Machines · 2018–2026</title>
+        <meta
+            name="description"
+            content="RIOS Intelligent Machines built AI-powered robotic automation for industrial manufacturing. The company has wound down. The technology continues — in open code, licensable IP, and research partnerships."
+        />
+
+        <!--
+  Caretaker website for rios.ai — v3
+  Spine: the 3-tier IP framework. Goal: point people toward what's available.
+  No business case, no narrative arc, no case studies.
+
+  v3 changes vs v2:
+   - Video hero (MSV floor tour, 30s muted loop) + real RIOS logo
+   - Tier B rewritten with 10-item held-IP inventory + inline L0–L3 framework
+   - Exhibits gallery (mixed photo + video) replacing the static photo gallery
+   - Customer names scrubbed from band captions
+   - All hotlinks replaced with local /assets/
+-->
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+            rel="stylesheet"
+        />
+
+        <style>
+            /* =========================================================================
+     TOKENS — preserved from v2
+     ========================================================================= */
+            :root {
+                /* RIOS brand: Black #051c2c (Pantone 296c) + Blue #0183ff (Pantone 3005c) */
+                --bg: #051c2c;
+                --bg-2: #0a2536;
+                --surface: rgba(255, 255, 255, 0.025);
+                --border: rgba(255, 255, 255, 0.08);
+                --border-2: rgba(255, 255, 255, 0.16);
+                --fg: #ffffff;
+                --fg-2: #c8d4e0;
+                --muted: #8a99a8;
+                --muted-2: #4a5868;
+                --accent: #0183ff;
+                --accent-2: #4ba8ff;
+                --grid: rgba(255, 255, 255, 0.04);
+
+                --font-display: "Instrument Serif", "Times New Roman", serif;
+                --font-body: "IBM Plex Sans", system-ui, sans-serif;
+                --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+                --maxw: 1240px;
+                --pad-x: clamp(20px, 4vw, 56px);
+            }
+
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+            }
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                background: var(--bg);
+                color: var(--fg);
+                font-family: var(--font-body);
+                font-weight: 300;
+                font-size: 16px;
+                line-height: 1.55;
+                -webkit-font-smoothing: antialiased;
+                text-rendering: optimizeLegibility;
+                overflow-x: hidden;
+            }
+            a {
+                color: inherit;
+                text-decoration: none;
+            }
+            ::selection {
+                background: var(--accent);
+                color: #0a2536;
+            }
+            img,
+            video {
+                max-width: 100%;
+                display: block;
+            }
+
+            .wrap {
+                max-width: var(--maxw);
+                margin: 0 auto;
+                padding: 0 var(--pad-x);
+            }
+            section {
+                position: relative;
+            }
+
+            /* =========================================================================
+     NAV — with real logo
+     ========================================================================= */
+            .nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 50;
+                backdrop-filter: blur(14px) saturate(1.2);
+                -webkit-backdrop-filter: blur(14px) saturate(1.2);
+                background: rgba(5, 28, 44, 0.55);
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-inner {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                height: 64px;
+            }
+            .brand {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                font-family: var(--font-mono);
+                font-size: 11px;
+                letter-spacing: 0.2em;
+                color: var(--muted);
+                text-transform: uppercase;
+            }
+            .brand img {
+                height: 24px;
+                width: auto;
+                opacity: 0.95;
+            }
+            .nav-links {
+                display: flex;
+                gap: 28px;
+                align-items: center;
+                font-family: var(--font-mono);
+                font-size: 12px;
+                letter-spacing: 0.08em;
+                color: var(--fg-2);
+            }
+            .nav-links a:hover {
+                color: var(--accent);
+            }
+            .nav-links .pill {
+                border: 1px solid var(--border-2);
+                padding: 7px 14px;
+                border-radius: 999px;
+                transition:
+                    border-color 0.2s,
+                    color 0.2s,
+                    background 0.2s;
+            }
+            .nav-links .pill:hover {
+                border-color: var(--accent);
+                color: var(--accent);
+                background: rgba(1, 131, 255, 0.05);
+            }
+            @media (max-width: 720px) {
+                .nav-links a:not(.pill) {
+                    display: none;
+                }
+                .brand span.archive {
+                    display: none;
+                }
+            }
+
+            /* =========================================================================
+     HERO — video background (autoplay muted loop)
+     ========================================================================= */
+            .hero {
+                position: relative;
+                min-height: 100vh;
+                display: flex;
+                align-items: flex-end;
+                padding-top: 120px;
+                padding-bottom: 96px;
+                overflow: hidden;
+            }
+            /* Full-bleed wind-down video — fills the viewport, no crop sympathy */
+            .hero-video {
+                position: absolute;
+                inset: 0;
+                z-index: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+                /* Drop brightness ~20% for readability against the bottom-left text block */
+                filter: brightness(0.8) saturate(0.95);
+            }
+            /* Stronger bottom-anchored gradient — replaces the blurry scrim. Darkens
+               the bottom half of the hero enough for text readability without obscuring
+               the upper video. */
+            .hero-vignette {
+                position: absolute;
+                inset: 0;
+                z-index: 1;
+                pointer-events: none;
+                background:
+                    linear-gradient(
+                        180deg,
+                        rgba(5, 28, 44, 0.45) 0%,
+                        rgba(5, 28, 44, 0.0) 20%,
+                        rgba(5, 28, 44, 0.35) 48%,
+                        rgba(5, 28, 44, 0.78) 72%,
+                        rgba(5, 28, 44, 0.96) 100%
+                    ),
+                    linear-gradient(
+                        90deg,
+                        rgba(5, 28, 44, 0.55) 0%,
+                        rgba(5, 28, 44, 0.18) 45%,
+                        rgba(5, 28, 44, 0.0) 100%
+                    );
+            }
+            .hero-inner {
+                position: relative;
+                z-index: 5;
+                max-width: 1000px;
+                width: 100%;
+            }
+            .hero-grid {
+                position: absolute;
+                inset: 0;
+                z-index: 2;
+                background-image:
+                    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+                    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+                background-size: 56px 56px;
+                mask-image: radial-gradient(
+                    ellipse 80% 70% at 30% 45%,
+                    #000 30%,
+                    transparent 80%
+                );
+                -webkit-mask-image: radial-gradient(
+                    ellipse 80% 70% at 30% 45%,
+                    #000 30%,
+                    transparent 80%
+                );
+            }
+            .hero-glow {
+                position: absolute;
+                z-index: 2;
+                width: 900px;
+                height: 900px;
+                left: 20%;
+                top: 55%;
+                transform: translate(-50%, -50%);
+                background: radial-gradient(
+                    circle at center,
+                    rgba(1, 131, 255, 0.1),
+                    transparent 60%
+                );
+                filter: blur(20px);
+                pointer-events: none;
+            }
+            .hero-inner {
+                position: relative;
+                z-index: 5;
+                max-width: 1000px;
+            }
+
+            .eyebrow {
+                display: inline-flex;
+                align-items: center;
+                gap: 12px;
+                font-family: var(--font-mono);
+                font-size: 12px;
+                letter-spacing: 0.18em;
+                color: var(--muted);
+                margin-bottom: 36px;
+            }
+            .eyebrow .dot {
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background: var(--accent);
+                box-shadow: 0 0 12px var(--accent);
+            }
+
+            h1.display {
+                font-family: var(--font-display);
+                font-weight: 400;
+                font-size: clamp(48px, 7.5vw, 112px);
+                line-height: 0.98;
+                letter-spacing: -0.015em;
+                margin: 0 0 36px;
+                color: var(--fg);
+            }
+            /* Soft halo around display type — keeps text legible during the
+               bright-frame moments of the hero video without needing a scrim. */
+            .hero h1.display,
+            .hero .lede {
+                text-shadow:
+                    0 1px 24px rgba(5, 28, 44, 0.7),
+                    0 2px 6px rgba(5, 28, 44, 0.5);
+            }
+            h1.display em {
+                font-style: italic;
+                color: var(--fg-2);
+            }
+            h1.display .accent {
+                color: var(--accent);
+                font-style: italic;
+            }
+
+            .lede {
+                font-size: clamp(17px, 1.6vw, 21px);
+                color: var(--fg-2);
+                max-width: 640px;
+                line-height: 1.5;
+                margin: 0 0 48px;
+                font-weight: 300;
+            }
+
+            .cta-row {
+                display: flex;
+                gap: 14px;
+                flex-wrap: wrap;
+            }
+            .btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                padding: 14px 22px;
+                font-family: var(--font-mono);
+                font-size: 13px;
+                letter-spacing: 0.06em;
+                border-radius: 8px;
+                transition: all 0.2s ease;
+                cursor: pointer;
+                border: 1px solid transparent;
+            }
+            .btn-primary {
+                background: var(--accent);
+                color: #051c2c;
+                font-weight: 500;
+            }
+            .btn-primary:hover {
+                background: #ffb070;
+                transform: translateY(-1px);
+            }
+            .btn-secondary {
+                border-color: var(--border-2);
+                color: var(--fg);
+                background: rgba(5, 28, 44, 0.4);
+                backdrop-filter: blur(8px);
+            }
+            .btn-secondary:hover {
+                border-color: var(--fg-2);
+                background: rgba(255, 255, 255, 0.04);
+            }
+            .btn .arrow {
+                display: inline-block;
+                transition: transform 0.2s;
+            }
+            .btn:hover .arrow {
+                transform: translateX(3px);
+            }
+
+            /* HERO TIMELINE — 6 milestones across the bottom of the hero */
+            .timeline {
+                margin-top: 88px;
+                padding-top: 32px;
+                border-top: 1px solid var(--border);
+            }
+            .timeline-track {
+                position: relative;
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                gap: 14px;
+            }
+            .timeline-track::before {
+                content: "";
+                position: absolute;
+                top: 7px;
+                left: 6px;
+                right: 6px;
+                height: 1px;
+                background: linear-gradient(
+                    to right,
+                    transparent 0,
+                    var(--border-2) 4%,
+                    var(--border-2) 96%,
+                    transparent 100%
+                );
+                z-index: 0;
+            }
+            .milestone {
+                position: relative;
+                z-index: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 14px;
+            }
+            .milestone .dot {
+                width: 14px;
+                height: 14px;
+                border-radius: 50%;
+                background: var(--accent);
+                box-shadow:
+                    0 0 0 4px var(--bg),
+                    0 0 14px rgba(1, 131, 255, 0.45);
+            }
+            .milestone.archive .dot {
+                background: var(--bg);
+                border: 1.5px solid var(--accent);
+                box-shadow: 0 0 0 4px var(--bg);
+            }
+            .milestone .year {
+                font-family: var(--font-display);
+                font-size: 28px;
+                line-height: 1;
+                color: var(--fg);
+            }
+            .milestone .label {
+                font-family: var(--font-mono);
+                font-size: 10.5px;
+                letter-spacing: 0.1em;
+                color: var(--muted);
+                text-transform: uppercase;
+                line-height: 1.5;
+            }
+            @media (max-width: 980px) {
+                .timeline-track {
+                    grid-template-columns: repeat(4, 1fr);
+                    gap: 28px 18px;
+                    row-gap: 28px;
+                }
+                .timeline-track::before {
+                    display: none;
+                }
+            }
+            @media (max-width: 560px) {
+                .timeline-track {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+
+            /* Strong emphasis inside lede — brighter color + slight weight bump */
+            .lede strong {
+                color: var(--fg);
+                font-weight: 500;
+            }
+
+            /* =========================================================================
+     SECTION SHELL
+     ========================================================================= */
+            .section {
+                padding: 140px 0;
+                position: relative;
+            }
+            .section-eyebrow {
+                font-family: var(--font-mono);
+                font-size: 12px;
+                letter-spacing: 0.18em;
+                color: var(--accent);
+                text-transform: uppercase;
+                margin-bottom: 24px;
+                display: flex;
+                align-items: center;
+                gap: 14px;
+            }
+            .section-eyebrow::before {
+                content: "";
+                width: 24px;
+                height: 1px;
+                background: var(--accent);
+            }
+            .section-title {
+                font-family: var(--font-display);
+                font-weight: 400;
+                font-size: clamp(36px, 5vw, 64px);
+                line-height: 1.02;
+                letter-spacing: -0.01em;
+                margin: 0 0 24px;
+                max-width: 880px;
+            }
+            .section-title em {
+                color: var(--fg-2);
+                font-style: italic;
+            }
+            .section-sub {
+                font-size: 18px;
+                color: var(--fg-2);
+                max-width: 680px;
+                line-height: 1.5;
+                margin: 0;
+            }
+
+            /* =========================================================================
+     ABOUT — tightened in v3
+     ========================================================================= */
+            .about {
+                border-top: 1px solid var(--border);
+            }
+            .about-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 80px;
+                margin-top: 64px;
+            }
+            .about-grid p {
+                font-size: 17px;
+                color: var(--fg-2);
+                line-height: 1.6;
+                margin: 0 0 20px;
+            }
+            @media (max-width: 860px) {
+                .about-grid {
+                    grid-template-columns: 1fr;
+                    gap: 32px;
+                }
+            }
+
+            /* =========================================================================
+     FULL-BLEED PHOTO BANDS — captions scrubbed of customer names
+     ========================================================================= */
+            .band {
+                position: relative;
+                width: 100%;
+                min-height: 78vh;
+                display: flex;
+                align-items: flex-end;
+                overflow: hidden;
+                background-color: #072234;
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+                border-top: 1px solid var(--border);
+                border-bottom: 1px solid var(--border);
+            }
+            .band::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                z-index: 1;
+                background: linear-gradient(
+                    180deg,
+                    rgba(5, 28, 44, 0.45) 0%,
+                    rgba(5, 28, 44, 0.05) 35%,
+                    rgba(5, 28, 44, 0.45) 75%,
+                    rgba(5, 28, 44, 0.95) 100%
+                );
+            }
+            .band-caption {
+                position: relative;
+                z-index: 2;
+                width: 100%;
+                padding: 56px 0 64px;
+            }
+            .band-caption .wrap {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+                gap: 32px;
+                flex-wrap: wrap;
+            }
+            .band-caption .tag {
+                font-family: var(--font-mono);
+                font-size: 11px;
+                letter-spacing: 0.18em;
+                color: var(--accent);
+                text-transform: uppercase;
+                margin-bottom: 12px;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+            .band-caption .tag::before {
+                content: "";
+                width: 20px;
+                height: 1px;
+                background: var(--accent);
+            }
+            .band-caption h3 {
+                font-family: var(--font-display);
+                font-size: clamp(28px, 3.5vw, 48px);
+                font-weight: 400;
+                line-height: 1.05;
+                margin: 0;
+                max-width: 620px;
+                color: var(--fg);
+            }
+            .band-caption h3 em {
+                color: var(--fg-2);
+                font-style: italic;
+            }
+            .band-meta {
+                font-family: var(--font-mono);
+                font-size: 11px;
+                letter-spacing: 0.12em;
+                color: var(--muted);
+                text-align: right;
+            }
+            .band-meta .k {
+                display: block;
+                margin-bottom: 4px;
+                color: var(--muted-2);
+            }
+
+            .band-1 {
+                background-image: url("assets/photos/vph-floor-02.jpg");
+            }
+            .band-2 {
+                background-image: url("assets/photos/green-chain-veneer.jpg");
+                background-position: center 50%;
+            }
+            .band-3 {
+                background-image: url("assets/photos/factory-multirobot.jpg");
+                background-position: center 50%;
+            }
+            .band-4 {
+                background-image: url("assets/photos/ai-log-overlay.jpg");
+                background-position: center 35%;
+            }
+            /* Bare separator band — no caption overlay, just a tall photo between sections */
+            .band-separator {
+                min-height: 62vh;
+            }
+            .band-separator::before {
+                background: linear-gradient(
+                    180deg,
+                    rgba(5, 28, 44, 0.55) 0%,
+                    rgba(5, 28, 44, 0) 20%,
+                    rgba(5, 28, 44, 0) 80%,
+                    rgba(5, 28, 44, 0.85) 100%
+                );
+            }
+
+            /* =========================================================================
+     TIERS — Tier B refactored with 10-item inventory + L0–L3 micro-diagram
+     ========================================================================= */
+            .tiers {
+                background: var(--bg-2);
+            }
+            .tier-grid {
+                margin-top: 64px;
+                display: grid;
+                grid-template-columns: 1fr 1.2fr 1fr;
+                gap: 1px;
+                background: var(--border);
+                border: 1px solid var(--border);
+            }
+            .tier {
+                background: var(--bg-2);
+                padding: 40px 36px 44px;
+                display: flex;
+                flex-direction: column;
+                min-height: 540px;
+                position: relative;
+                transition: background 0.25s;
+            }
+            .tier:hover {
+                background: #0c2940;
+            }
+            .tier-tag {
+                font-family: var(--font-mono);
+                font-size: 11px;
+                letter-spacing: 0.18em;
+                color: var(--accent);
+                margin-bottom: 32px;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+            .tier-tag .badge {
+                display: inline-block;
+                border: 1px solid var(--accent);
+                color: var(--accent);
+                padding: 2px 8px;
+                border-radius: 3px;
+                font-size: 10px;
+            }
+            .tier:nth-child(2) .tier-tag {
+                color: #a8c5e6;
+            }
+            .tier:nth-child(2) .tier-tag .badge {
+                border-color: #a8c5e6;
+                color: #a8c5e6;
+            }
+            .tier:nth-child(3) .tier-tag {
+                color: #a8c5e6;
+            }
+            .tier:nth-child(3) .tier-tag .badge {
+                border-color: #a8c5e6;
+                color: #a8c5e6;
+            }
+            .tier-name {
+                font-family: var(--font-display);
+                font-size: 36px;
+                line-height: 1.05;
+                font-weight: 400;
+                margin: 0 0 18px;
+                color: var(--fg);
+            }
+            .tier-name em {
+                font-style: italic;
+                color: var(--fg-2);
+            }
+            .tier-desc {
+                color: var(--fg-2);
+                font-size: 14.5px;
+                line-height: 1.6;
+                margin: 0 0 32px;
+                max-width: 38ch;
+            }
+            .tier-list {
+                list-style: none;
+                padding: 0;
+                margin: 0 0 24px;
+                border-top: 1px solid var(--border);
+            }
+            .tier-list li {
+                padding: 10px 0;
+                border-bottom: 1px solid var(--border);
+                font-family: var(--font-mono);
+                font-size: 12px;
+                letter-spacing: 0.01em;
+                color: var(--fg-2);
+                display: flex;
+                gap: 10px;
+                line-height: 1.4;
+            }
+            .tier-list li::before {
+                content: "—";
+                color: var(--muted-2);
+                flex-shrink: 0;
+            }
+
+            /* L0–L3 micro-diagram inside Tier B */
+            .levels {
+                margin: 8px 0 24px;
+                border: 1px solid var(--border);
+                background: rgba(0, 0, 0, 0.2);
+                border-radius: 4px;
+                overflow: hidden;
+            }
+            .level-row {
+                display: grid;
+                grid-template-columns: 36px 1fr;
+                padding: 8px 12px;
+                font-family: var(--font-mono);
+                font-size: 11px;
+                color: var(--fg-2);
+                line-height: 1.4;
+                border-bottom: 1px solid var(--border);
+                align-items: center;
+            }
+            .level-row:last-child {
+                border-bottom: none;
+            }
+            .level-row .L {
+                color: #a8c5e6;
+                font-weight: 500;
+                letter-spacing: 0.06em;
+            }
+
+            .tier-cta {
+                margin-top: auto;
+                font-family: var(--font-mono);
+                font-size: 13px;
+                letter-spacing: 0.06em;
+                color: var(--fg);
+                border-bottom: 1px solid var(--border-2);
+                padding-bottom: 8px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: space-between;
+                transition:
+                    color 0.2s,
+                    border-color 0.2s;
+            }
+            .tier-cta:hover {
+                color: var(--accent);
+                border-color: var(--accent);
+            }
+            @media (max-width: 980px) {
+                .tier-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            /* =========================================================================
+     CAPABILITIES — 31 entries, 6 categories. Each row has an availability dot
+     (filled = licensable, hollow = open source) and small mono tags.
+     ========================================================================= */
+            .capabilities-list {
+                margin-top: 64px;
+                display: flex;
+                flex-direction: column;
+                gap: 80px;
+            }
+            .cap-cat {
+                display: flex;
+                flex-direction: column;
+            }
+            .cap-cat-head {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                padding-bottom: 20px;
+                margin-bottom: 36px;
+                border-bottom: 1px solid var(--border);
+                gap: 24px;
+                flex-wrap: wrap;
+            }
+            .cap-cat-name {
+                font-family: var(--font-display);
+                font-size: clamp(24px, 2.6vw, 32px);
+                font-weight: 400;
+                line-height: 1.05;
+                margin: 0;
+                color: var(--fg);
+            }
+            .cap-cat-name em {
+                font-style: italic;
+                color: var(--fg-2);
+            }
+            .cap-cat-count {
+                font-family: var(--font-mono);
+                font-size: 11px;
+                letter-spacing: 0.14em;
+                color: var(--muted);
+                text-transform: uppercase;
+                white-space: nowrap;
+            }
+            .cap-list {
+                display: flex;
+                flex-direction: column;
+                gap: 32px;
+            }
+            .cap {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+            .cap-head {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                margin-bottom: 4px;
+                flex-wrap: wrap;
+            }
+            .cap-name {
+                font-family: var(--font-display);
+                font-size: clamp(20px, 2vw, 24px);
+                font-weight: 400;
+                line-height: 1.15;
+                color: var(--fg);
+                margin: 0;
+            }
+            /* Prominent clickable badge — primary signal of OSS vs licensable */
+            .cap-badge {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 5px 12px 5px 12px;
+                border-radius: 3px;
+                font-family: var(--font-mono);
+                font-size: 10.5px;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                font-weight: 500;
+                text-decoration: none;
+                white-space: nowrap;
+                transition:
+                    background 0.15s,
+                    color 0.15s,
+                    border-color 0.15s,
+                    transform 0.15s;
+                position: relative;
+                top: -1px;
+            }
+            .cap-badge.licensable {
+                background: var(--accent);
+                color: var(--bg);
+                border: 1px solid var(--accent);
+            }
+            .cap-badge.licensable:hover {
+                background: transparent;
+                color: var(--accent);
+                transform: translateY(-1px);
+            }
+            .cap-badge.open {
+                background: transparent;
+                color: var(--accent);
+                border: 1px solid var(--accent);
+            }
+            .cap-badge.open:hover {
+                background: var(--accent);
+                color: var(--bg);
+                transform: translateY(-1px);
+            }
+            .cap-badge .arrow {
+                font-size: 11px;
+                opacity: 0.85;
+            }
+            .cap-maturity {
+                font-family: var(--font-mono);
+                font-size: 10px;
+                letter-spacing: 0.16em;
+                color: var(--muted);
+                text-transform: uppercase;
+                white-space: nowrap;
+            }
+            .cap-desc {
+                font-size: 14.5px;
+                color: var(--fg-2);
+                line-height: 1.55;
+                margin: 0 0 8px;
+                max-width: 64ch;
+            }
+            .cap-repos {
+                font-family: var(--font-mono);
+                font-size: 11px;
+                letter-spacing: 0.02em;
+                color: var(--muted);
+            }
+            .cap-repos a {
+                color: var(--muted);
+                border-bottom: 1px solid var(--muted-2);
+                padding-bottom: 1px;
+                transition: color 0.15s, border-color 0.15s;
+            }
+            .cap-repos a:hover {
+                color: var(--accent);
+                border-color: var(--accent);
+            }
+            .cap-repos .arrow { color: var(--muted-2); margin-right: 6px; }
+            .cap-repos .held {
+                color: var(--accent);
+                font-style: normal;
+            }
+
+            /* Capabilities TOC — table of 6 categories above the deep-dive */
+            .cap-toc {
+                margin-top: 40px;
+                margin-bottom: 24px;
+                border-top: 1px solid var(--border);
+            }
+            .cap-toc-row {
+                display: grid;
+                grid-template-columns: 36px minmax(0, 1fr) minmax(0, 1.5fr) 32px;
+                gap: 24px;
+                padding: 22px 0;
+                border-bottom: 1px solid var(--border);
+                align-items: baseline;
+                color: inherit;
+                text-decoration: none;
+                transition:
+                    background-color 0.18s,
+                    padding-left 0.18s;
+            }
+            .cap-toc-row:hover {
+                background-color: rgba(255, 255, 255, 0.015);
+                padding-left: 12px;
+            }
+            .cap-toc-num {
+                font-family: var(--font-mono);
+                font-size: 11px;
+                letter-spacing: 0.12em;
+                color: var(--muted);
+            }
+            .cap-toc-name {
+                font-family: var(--font-display);
+                font-size: clamp(20px, 2.2vw, 26px);
+                font-weight: 400;
+                line-height: 1.15;
+                color: var(--fg);
+            }
+            .cap-toc-name em {
+                font-style: italic;
+                color: var(--fg-2);
+            }
+            .cap-toc-row:hover .cap-toc-name { color: var(--accent); }
+            .cap-toc-summary {
+                font-size: 14.5px;
+                color: var(--fg-2);
+                line-height: 1.5;
+            }
+            .cap-toc-arrow {
+                font-family: var(--font-mono);
+                font-size: 14px;
+                color: var(--muted-2);
+                text-align: right;
+                transition: color 0.18s, transform 0.18s;
+            }
+            .cap-toc-row:hover .cap-toc-arrow {
+                color: var(--accent);
+                transform: translateY(2px);
+            }
+            .cap-legend {
+                font-family: var(--font-mono);
+                font-size: 11px;
+                letter-spacing: 0.06em;
+                color: var(--muted);
+                margin: 0 0 12px;
+                display: flex;
+                gap: 24px;
+                flex-wrap: wrap;
+            }
+            .cap-legend .swatch {
+                display: inline-block;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                margin-right: 8px;
+                vertical-align: 1px;
+            }
+            .cap-legend .swatch.filled {
+                background: var(--accent);
+            }
+            .cap-legend .swatch.hollow {
+                background: transparent;
+                border: 1.5px solid var(--accent);
+            }
+            @media (max-width: 720px) {
+                .cap-toc-row {
+                    grid-template-columns: 28px minmax(0, 1fr) 24px;
+                    grid-template-rows: auto auto;
+                    row-gap: 6px;
+                }
+                .cap-toc-summary {
+                    grid-column: 2 / 3;
+                    grid-row: 2;
+                }
+            }
+
+            /* =========================================================================
+     EXHIBITS GALLERY — mixed photo + video grid, each captioned to a held capability
+     ========================================================================= */
+            .exhibits {
+                border-top: 1px solid var(--border);
+            }
+            .exhibit-grid {
+                margin-top: 56px;
+                display: grid;
+                grid-template-columns: repeat(12, 1fr);
+                grid-auto-rows: 220px;
+                gap: 1px;
+                background: var(--border);
+                border: 1px solid var(--border);
+            }
+            .ex-cell {
+                position: relative;
+                overflow: hidden;
+                background-color: #072234;
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+            .ex-cell video,
+            .ex-cell .ex-bg {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+            .ex-cell::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(
+                    180deg,
+                    transparent 40%,
+                    rgba(5, 28, 44, 0.92) 100%
+                );
+                pointer-events: none;
+                z-index: 1;
+            }
+            .ex-cell .caption {
+                position: absolute;
+                bottom: 16px;
+                left: 18px;
+                right: 18px;
+                z-index: 2;
+                color: var(--fg);
+            }
+            .ex-cell .caption .label {
+                display: block;
+                font-family: var(--font-mono);
+                color: var(--accent);
+                font-size: 10px;
+                letter-spacing: 0.18em;
+                margin-bottom: 6px;
+                text-transform: uppercase;
+            }
+            .ex-cell .caption .title {
+                font-family: var(--font-display);
+                font-size: 17px;
+                font-weight: 400;
+                line-height: 1.2;
+                color: var(--fg);
+            }
+            /* Grid placements — mix of wide landscape + tall portrait cells */
+            .ex-1 {
+                grid-column: span 7;
+                grid-row: span 2;
+            } /* wide hero — production scene */
+            .ex-2 {
+                grid-column: span 5;
+                grid-row: span 1;
+            } /* upper-right wide  */
+            .ex-3 {
+                grid-column: span 5;
+                grid-row: span 1;
+            } /* lower-right wide */
+            .ex-4 {
+                grid-column: span 3;
+                grid-row: span 2;
+            } /* tall portrait — tactile */
+            .ex-5 {
+                grid-column: span 3;
+                grid-row: span 2;
+            } /* tall portrait — perception */
+            .ex-6 {
+                grid-column: span 3;
+                grid-row: span 2;
+            } /* tall portrait — PLC */
+            .ex-7 {
+                grid-column: span 3;
+                grid-row: span 2;
+            } /* tall portrait — omni-agent */
+            @media (max-width: 980px) {
+                .exhibit-grid {
+                    grid-template-columns: repeat(6, 1fr);
+                    grid-auto-rows: 180px;
+                }
+                .ex-1 {
+                    grid-column: span 6;
+                }
+                .ex-2,
+                .ex-3 {
+                    grid-column: span 6;
+                }
+                .ex-4,
+                .ex-5,
+                .ex-6,
+                .ex-7 {
+                    grid-column: span 3;
+                }
+            }
+            @media (max-width: 600px) {
+                .exhibit-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+                .ex-1,
+                .ex-2,
+                .ex-3 {
+                    grid-column: span 2;
+                }
+                .ex-4,
+                .ex-5,
+                .ex-6,
+                .ex-7 {
+                    grid-column: span 1;
+                }
+            }
+
+            /* =========================================================================
+     REPOS — unchanged
+     ========================================================================= */
+            .repos {
+                border-top: 1px solid var(--border);
+            }
+            .repo-grid {
+                margin-top: 56px;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1px;
+                background: var(--border);
+                border: 1px solid var(--border);
+            }
+            .repo {
+                background: var(--bg);
+                padding: 28px 32px;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                transition: background 0.2s;
+            }
+            .repo:hover {
+                background: var(--bg-2);
+            }
+            .repo-head {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-family: var(--font-mono);
+                font-size: 13px;
+            }
+            .repo-name {
+                color: var(--fg);
+                letter-spacing: 0.02em;
+            }
+            .repo-name span {
+                color: var(--muted);
+            }
+            .repo-license {
+                font-size: 10.5px;
+                letter-spacing: 0.12em;
+                color: var(--muted);
+                border: 1px solid var(--border-2);
+                padding: 2px 7px;
+                border-radius: 3px;
+                text-transform: uppercase;
+            }
+            .repo-desc {
+                color: var(--fg-2);
+                font-size: 14.5px;
+                line-height: 1.5;
+                margin: 4px 0 0;
+            }
+            .repo-meta {
+                font-family: var(--font-mono);
+                font-size: 11px;
+                color: var(--muted);
+                letter-spacing: 0.08em;
+                display: flex;
+                gap: 16px;
+                margin-top: 8px;
+            }
+            @media (max-width: 760px) {
+                .repo-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            /* =========================================================================
+     CONTACT
+     ========================================================================= */
+            .contact {
+                border-top: 1px solid var(--border);
+                background: var(--bg-2);
+            }
+            .contact-grid {
+                margin-top: 64px;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+                align-items: stretch;
+            }
+            .contact-card {
+                border: 1px solid var(--border);
+                padding: 40px;
+                background: rgba(255, 255, 255, 0.015);
+                display: flex;
+                flex-direction: column;
+            }
+            .contact-card h3 {
+                font-family: var(--font-mono);
+                font-size: 11px;
+                letter-spacing: 0.18em;
+                color: var(--accent);
+                margin: 0 0 14px;
+                text-transform: uppercase;
+            }
+            .contact-card p {
+                font-size: 15px;
+                color: var(--fg-2);
+                margin: 0 0 18px;
+                line-height: 1.55;
+            }
+            .contact-card a.email {
+                font-family: var(--font-mono);
+                font-size: 14px;
+                color: var(--fg);
+                border-bottom: 1px solid var(--accent);
+                padding-bottom: 2px;
+            }
+            .contact-card a.email:hover {
+                color: var(--accent);
+            }
+            .contact-card .email {
+                margin-top: auto;
+            }
+            @media (max-width: 720px) {
+                .contact-grid {
+                    grid-template-columns: 1fr;
+                    gap: 16px;
+                }
+            }
+
+            /* =========================================================================
+     FOOTER
+     ========================================================================= */
+            footer {
+                border-top: 1px solid var(--border);
+                padding: 56px 0 40px;
+                font-family: var(--font-mono);
+                font-size: 12px;
+                color: var(--muted);
+                letter-spacing: 0.04em;
+            }
+            .foot-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+                gap: 32px;
+                flex-wrap: wrap;
+            }
+            .foot-mark {
+                font-family: var(--font-display);
+                font-size: 22px;
+                color: var(--fg);
+                letter-spacing: 0;
+                margin-bottom: 8px;
+            }
+            .foot-mark em {
+                font-style: italic;
+                color: var(--muted);
+            }
+            .foot-links {
+                display: flex;
+                gap: 24px;
+            }
+            .foot-links a:hover {
+                color: var(--accent);
+            }
+
+            /* MOTION */
+            @media (prefers-reduced-motion: no-preference) {
+                .reveal {
+                    opacity: 0;
+                    transform: translateY(12px);
+                    animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+                }
+                .reveal.d1 {
+                    animation-delay: 0.08s;
+                }
+                .reveal.d2 {
+                    animation-delay: 0.18s;
+                }
+                .reveal.d3 {
+                    animation-delay: 0.28s;
+                }
+                .reveal.d4 {
+                    animation-delay: 0.42s;
+                }
+                @keyframes rise {
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- =============================================================== NAV -->
+        <nav class="nav">
+            <div class="wrap nav-inner">
+                <a class="brand" href="#top" aria-label="RIOS">
+                    <img src="assets/logos/rios-white.png" alt="RIOS" />
+                    <span class="archive">/ ARCHIVE</span>
+                </a>
+                <div class="nav-links">
+                    <a href="#tiers">Capabilities</a>
+                    <a class="pill" href="#contact">Inquiries →</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- =============================================================== HERO — full-bleed montage (10 segments, 1920×1080) -->
+        <!--
+          TWO HERO VIDEO VERSIONS AVAILABLE:
+            hero-loop.mp4       — short version, 33s, 18MB, 3s segments + 6s closing
+            hero-loop-long.mp4  — long version,  53s, 28MB, 5s segments + 8s closing
+          To swap: change the <source> filename below. Both files coexist on disk.
+        -->
+        <section class="hero" id="top">
+            <video
+                class="hero-video"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                poster="assets/photos/hero-loop-poster.jpg"
+            >
+                <source src="assets/videos/hero-loop.mp4" type="video/mp4" />
+            </video>
+            <div class="hero-vignette" aria-hidden="true"></div>
+
+            <div class="wrap hero-inner">
+                <div class="eyebrow reveal">
+                    <span class="dot"></span>
+                    <span>MENLO PARK · MMXVIII — MMXXVI · ARCHIVED</span>
+                </div>
+
+                <h1 class="display reveal d1">
+                    RIOS<br>
+                    <em>2018&ndash;2026</em>
+                </h1>
+
+                <p class="lede reveal d2">
+                    From <strong>2018 to 2026</strong>, RIOS developed and
+                    deployed cutting-edge AI and robotics across industries
+                    &mdash; <strong>e-commerce, manufacturing, food
+                    processing, and wood products</strong>. The IP is now
+                    available for <strong>licensing</strong> and as
+                    <strong>open source</strong>.
+                </p>
+
+                <div class="cta-row reveal d3">
+                    <!-- TODO[ORG]: lock the GitHub org name and find-replace -->
+                    <a
+                        class="btn btn-primary"
+                        href="https://github.com/rios"
+                    >
+                        Browse the code <span class="arrow">→</span>
+                    </a>
+                    <a class="btn btn-secondary" href="#tiers">
+                        See what was built <span class="arrow">→</span>
+                    </a>
+                </div>
+
+                <div class="timeline reveal d4" aria-label="Company timeline 2018 to 2026">
+                    <div class="timeline-track">
+                        <div class="milestone">
+                            <div class="dot" aria-hidden="true"></div>
+                            <div class="year">2018</div>
+                            <div class="label">Founded as<br>Robotik Innovations</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="dot" aria-hidden="true"></div>
+                            <div class="year">2019</div>
+                            <div class="label">First haptic<br>sensors built</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="dot" aria-hidden="true"></div>
+                            <div class="year">2020</div>
+                            <div class="label">First robotic<br>system deployed</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="dot" aria-hidden="true"></div>
+                            <div class="year">2023</div>
+                            <div class="label">First multi-million<br>dollar contract</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="dot" aria-hidden="true"></div>
+                            <div class="year">2024</div>
+                            <div class="label">RIOS Agents<br>platform release</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="dot" aria-hidden="true"></div>
+                            <div class="year">2025</div>
+                            <div class="label">Production line<br>installed</div>
+                        </div>
+                        <div class="milestone archive">
+                            <div class="dot" aria-hidden="true"></div>
+                            <div class="year">2026</div>
+                            <div class="label">Company archived</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================================== PHOTO SEPARATOR (factory-multirobot line) -->
+        <section
+            class="band band-3 band-separator"
+            aria-hidden="true"
+        ></section>
+
+        <!-- =============================================================== CAPABILITIES (31 entries, 6 categories) -->
+        <section class="section capabilities" id="tiers">
+            <div class="wrap">
+                <h2 class="section-title">What was <em>built.</em></h2>
+                <div class="cap-toc">
+                    <a class="cap-toc-row" href="#cap-perception">
+                        <div class="cap-toc-num">01</div>
+                        <div class="cap-toc-name">AI Perception &amp; <em>Computer Vision</em></div>
+                        <div class="cap-toc-summary">Real-time vision, segmentation, 6DoF pose, defect detection.</div>
+                        <div class="cap-toc-arrow">↓</div>
+                    </a>
+                    <a class="cap-toc-row" href="#cap-motion">
+                        <div class="cap-toc-num">02</div>
+                        <div class="cap-toc-name">Robot Control &amp; <em>Motion</em></div>
+                        <div class="cap-toc-summary">FANUC integration, conveyor tracking, PLC, tactile sensing.</div>
+                        <div class="cap-toc-arrow">↓</div>
+                    </a>
+                    <a class="cap-toc-row" href="#cap-platform">
+                        <div class="cap-toc-num">03</div>
+                        <div class="cap-toc-name">Edge AI <em>Platform</em></div>
+                        <div class="cap-toc-summary">Containerized edge agents, no-code logic, MCP vision inference.</div>
+                        <div class="cap-toc-arrow">↓</div>
+                    </a>
+                    <a class="cap-toc-row" href="#cap-pipeline">
+                        <div class="cap-toc-num">04</div>
+                        <div class="cap-toc-name">ML Pipeline &amp; <em>Data Infrastructure</em></div>
+                        <div class="cap-toc-summary">Foundation-to-edge annotation, distillation, model deployment.</div>
+                        <div class="cap-toc-arrow">↓</div>
+                    </a>
+                    <a class="cap-toc-row" href="#cap-operations">
+                        <div class="cap-toc-num">05</div>
+                        <div class="cap-toc-name">Production <em>Operations</em></div>
+                        <div class="cap-toc-summary">Failure detection, operator interfaces, K8s, edge health.</div>
+                        <div class="cap-toc-arrow">↓</div>
+                    </a>
+                    <a class="cap-toc-row" href="#cap-research">
+                        <div class="cap-toc-num">06</div>
+                        <div class="cap-toc-name">Published <em>Research</em></div>
+                        <div class="cap-toc-summary">CVPR, WACV, ICCV — reconstruction, pose, grasping.</div>
+                        <div class="cap-toc-arrow">↓</div>
+                    </a>
+                </div>
+
+
+                <div class="capabilities-list">
+                    <div class="cap-cat">
+                        <div class="cap-cat-head">
+                            <h3 class="cap-cat-name">AI Perception &amp; <em>Computer Vision</em></h3>
+                            <span class="cap-cat-count">7 entries</span>
+                        </div>
+                        <div class="cap-list">
+                            <article class="cap licensable">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Real-Time GPU Inference Pipeline</h4>
+                                    <a class="cap-badge licensable" href="mailto:licensing@rios.ai?subject=Licensing inquiry">Licensable<span class="arrow">→</span></a>
+                                    <span class="cap-maturity">Validated</span>
+                                </div>
+                                <p class="cap-desc">GPU-accelerated YOLO (v8/v11) with PyTorch and TensorRT backends. Multi-camera multiplexing, Prometheus metrics, Kubernetes-native deployment. Production inference at <20ms across 30+ camera streams.</p>
+                            </article>
+                            <article class="cap licensable">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Pluggable Perception Framework</h4>
+                                    <a class="cap-badge licensable" href="mailto:licensing@rios.ai?subject=Licensing inquiry">Licensable<span class="arrow">→</span></a>
+                                    <span class="cap-maturity">Production</span>
+                                </div>
+                                <p class="cap-desc">C++/Python observer architecture with pluggable algorithm pipeline. Three-stage depth processing (plane segmentation → corner estimation → full veneer estimation). 14 observer instances in production, 20+ diagnostic failure codes.</p>
+                            </article>
+                            <article class="cap open">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Real-Time Segmentation Suite</h4>
+                                    <a class="cap-badge open" href="https://github.com/rios/segment-anything-2-real-time">Open source<span class="arrow">↗</span></a>
+                                    <span class="cap-maturity">Research</span>
+                                </div>
+                                <p class="cap-desc">SAM2 and EfficientSAM extended for real-time video — camera predictors, streaming inference, multi-object tracking, mask hole filling. 4× speed improvement to 25ms/frame. ~4,000 LOC on top of the foundation models.</p>
+                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/segment-anything-2-real-time">segment-anything-2-real-time</a> · <a href="https://github.com/rios/rt_efficient_sam2">rt_efficient_sam2</a></div>
+                            </article>
+                            <article class="cap open">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">6DoF Pose Estimation Pipeline</h4>
+                                    <a class="cap-badge open" href="https://github.com/rios/pix2pose_train">Open source<span class="arrow">↗</span></a>
+                                    <span class="cap-maturity">Production</span>
+                                </div>
+                                <p class="cap-desc">Full training-to-deployment pipeline (Pix2Pose, ICCV 2019). Multi-camera batch inference with Detectron2, ClearML experiment tracking, BOP-format datasets, Docker reproducibility.</p>
+                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/pix2pose_train">pix2pose_train</a> · <a href="https://github.com/rios/pix2pose_ros">pix2pose_ros</a> · <a href="https://github.com/rios/pix2pose-clearml">pix2pose-clearml</a></div>
+                            </article>
+                            <article class="cap licensable">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Wood &amp; Defect Ontology Models</h4>
+                                    <a class="cap-badge licensable" href="mailto:licensing@rios.ai?subject=Licensing inquiry">Licensable<span class="arrow">→</span></a>
+                                    <span class="cap-maturity">Production</span>
+                                </div>
+                                <p class="cap-desc">Domain-specific YOLO11-seg models — 10 object classes for wood products. mAP 0.778–0.923 across modal, amodal, and binary segmentation. Production defect detection and top-sheet segmentation against similar-colored backgrounds.</p>
+                            </article>
+                            <article class="cap open">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Industrial Camera Drivers</h4>
+                                    <a class="cap-badge open" href="https://github.com/rios/arena_camera_ros">Open source<span class="arrow">↗</span></a>
+                                    <span class="cap-maturity">Production</span>
+                                </div>
+                                <p class="cap-desc">ROS / ROS2 drivers for LUCID Triton RGB (Arena SDK), Lucid Helios ToF depth, FLIR Spinnaker, Luxonis OAK-D. Hardware triggering, timestamp filtering, buffered subscriptions with stale-data detection. Deployed across 4 production workcells.</p>
+                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/arena_camera_ros">arena_camera_ros</a> · <a href="https://github.com/rios/rios-depthai-ros">rios-depthai-ros</a> · <a href="https://github.com/rios/spinnaker_camera_ros2">spinnaker_camera_ros2</a> · <a href="https://github.com/rios/camera_control_msgs">camera_control_msgs</a></div>
+                            </article>
+                            <article class="cap licensable">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Food Quality Classification</h4>
+                                    <a class="cap-badge licensable" href="mailto:licensing@rios.ai?subject=Licensing inquiry">Licensable<span class="arrow">→</span></a>
+                                    <span class="cap-maturity">Production</span>
+                                </div>
+                                <p class="cap-desc">Real-time food defect classification on conveyor lines. MobileNetV3 / ResNet50 (6 architectures benchmarked). 3-class output with GradCAM debugging, 27ms inference, windowed majority voting. 50+ versioned datasets, deployed across 6 production lines.</p>
+                            </article>
+                        </div>
+                    </div>
+                    <div class="cap-cat">
+                        <div class="cap-cat-head">
+                            <h3 class="cap-cat-name">Robot Control &amp; <em>Motion</em></h3>
+                            <span class="cap-cat-count">6 entries</span>
+                        </div>
+                        <div class="cap-list">
+                            <article class="cap licensable">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">FANUC Direct Control Integration</h4>
+                                    <a class="cap-badge licensable" href="mailto:licensing@rios.ai?subject=Licensing inquiry">Licensable<span class="arrow">→</span></a>
+                                    <span class="cap-maturity">Production</span>
+                                </div>
+                                <p class="cap-desc">Custom KAREL server and TCP/IP RMI client for direct FANUC controller access. Stream motion with spline trajectory generation. Joint and cartesian state streaming. Five-state robot status model (NOT_CONNECTED → CONNECTED → ENABLED → ACTIVE → FAULTED). Bypasses the standard teach-pendant workflow. Deployed across 8 FANUC R-2000iC / 220U robots.</p>
+                            </article>
+                            <article class="cap licensable">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Application State Machine Framework</h4>
+                                    <a class="cap-badge licensable" href="mailto:licensing@rios.ai?subject=Licensing inquiry">Licensable<span class="arrow">→</span></a>
+                                    <span class="cap-maturity">Production</span>
+                                </div>
+                                <p class="cap-desc">Composable FSM architecture (20 states) for industrial automation. Base framework with launcher, commander, event synchronization. Domain-agnostic — works for any sequential automation process. Multi-robot coordination for pick / place / QC with PLC-synchronized fault recovery.</p>
+                            </article>
+                            <article class="cap open">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Real-Time Conveyor Tracking</h4>
+                                    <a class="cap-badge open" href="https://github.com/rios/dx_encoder">Open source<span class="arrow">↗</span></a>
+                                    <span class="cap-maturity">Production</span>
+                                </div>
+                                <p class="cap-desc">50Hz encoder-driven tracking with TF frame publishing. Five encoder strategies (VirtualCSI, Float, IO, PLC, IOGate). Enables picking from and placing onto a continuously moving conveyor without line stops. Validated at 8.5–10 BPM, >100 ft/min.</p>
+                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/dx_encoder">dx_encoder</a> · <a href="https://github.com/rios/dx_path_tracker">dx_path_tracker</a></div>
+                            </article>
+                            <article class="cap open">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">PLC Integration Layer</h4>
+                                    <a class="cap-badge open" href="https://github.com/rios/rios-plc-test">Open source<span class="arrow">↗</span></a>
+                                    <span class="cap-maturity">Production</span>
+                                </div>
+                                <p class="cap-desc">Allen-Bradley PLC communication via EtherNet/IP (libplctag). Bidirectional tag read/write published as ROS topics. YAML-driven configuration. CLI utility already published on PyPI.</p>
+                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/rios-plc-test">rios-plc-test</a> · <a href="https://github.com/rios/dx_plc">dx_plc</a> · <a href="https://github.com/rios/dx_io">dx_io</a></div>
+                            </article>
+                            <article class="cap open">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Multi-Paper Grasping System</h4>
+                                    <a class="cap-badge open" href="https://github.com/rios/agnet">Open source<span class="arrow">↗</span></a>
+                                    <span class="cap-maturity">Validated</span>
+                                </div>
+                                <p class="cap-desc">Integrated robotic grasping combining three published approaches — GR-ConvNet (IROS 2020), MVP Grasp, and Visual Pushing-Grasping. RealSense depth, 4 model variants, full training pipeline with ROS integration.</p>
+                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/agnet">agnet</a></div>
+                            </article>
+                            <article class="cap licensable">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Tactile Sensing &amp; Grasp Intelligence</h4>
+                                    <a class="cap-badge licensable" href="mailto:licensing@rios.ai?subject=Licensing inquiry">Licensable<span class="arrow">→</span></a>
+                                    <span class="cap-maturity">Validated</span>
+                                </div>
+                                <p class="cap-desc">Piezoelectric tactile sensor (XTS-1) — 14×37 taxel array at 3–17kHz, picoCoulomb force measurement, 10 thermistors, 13 strain gauges. Three-layer driver stack with PIMPL pattern. TactileNet (dual-finger 3D CNN) classifies grasp events from 100ms windows. Integrated with Robotiq 2-finger gripper and custom Cypress FX3 + PSoC + FPGA firmware.</p>
+                            </article>
+                        </div>
+                    </div>
+                    <div class="cap-cat">
+                        <div class="cap-cat-head">
+                            <h3 class="cap-cat-name">Edge AI <em>Platform</em></h3>
+                            <span class="cap-cat-count">5 entries</span>
+                        </div>
+                        <div class="cap-list">
+                            <article class="cap licensable">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">MCP Vision Inference Platform</h4>
+                                    <a class="cap-badge licensable" href="mailto:licensing@rios.ai?subject=Licensing inquiry">Licensable<span class="arrow">→</span></a>
+                                    <span class="cap-maturity">Validated</span>
+                                </div>
+                                <p class="cap-desc">Production v2.0.0 — MCP and FastAPI server for YOLOE object detection. Six prompt modes (prompt-free, text, visual cross-image). Async GPU inference, web playground, Prometheus / Grafana monitoring. Powers interactive video analysis for customer evaluations.</p>
+                            </article>
+                            <article class="cap licensable">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Edge AI Agent Core</h4>
+                                    <a class="cap-badge licensable" href="mailto:licensing@rios.ai?subject=Licensing inquiry">Licensable<span class="arrow">→</span></a>
+                                    <span class="cap-maturity">Production</span>
+                                </div>
+                                <p class="cap-desc">Containerized edge agent integrating camera management, GPU inference, ROS2, MQTT, telemetry, and S3 sync. 15 configurable worker types via YAML. Runs on NVIDIA Jetson Orin. Deployed across 25+ edge clusters with 24/7 operation and LTE fallback.</p>
+                            </article>
+                            <article class="cap licensable">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">No-Code Event Logic Builder</h4>
+                                    <a class="cap-badge licensable" href="mailto:licensing@rios.ai?subject=Licensing inquiry">Licensable<span class="arrow">→</span></a>
+                                    <span class="cap-maturity">Validated</span>
+                                </div>
+                                <p class="cap-desc">Visual interface for defining regions of interest, ML-based event triggers, and KPI reports. Deploys custom logic to edge devices with output to PLC, ROS2, or HTTP — without code. Customer-configured monitoring across wood products, metals, and construction materials.</p>
+                            </article>
+                            <article class="cap licensable">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Rapid Use-Case Evaluation Tool</h4>
+                                    <a class="cap-badge licensable" href="mailto:licensing@rios.ai?subject=Licensing inquiry">Licensable<span class="arrow">→</span></a>
+                                    <span class="cap-maturity">Validated</span>
+                                </div>
+                                <p class="cap-desc">Web portal where customers upload video and receive a working AI model with insights in 2 hours. Interactive zone drawing, AI chat with multi-LLM backend, real-time WebSocket inference at ~8 FPS. The primary sales tool behind an 83% conversion rate and 3-month average sales cycle.</p>
+                            </article>
+                            <article class="cap licensable">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Cloud-to-Edge Deployment Pipeline</h4>
+                                    <a class="cap-badge licensable" href="mailto:licensing@rios.ai?subject=Licensing inquiry">Licensable<span class="arrow">→</span></a>
+                                    <span class="cap-maturity">Production</span>
+                                </div>
+                                <p class="cap-desc">Helm-based GitOps deployment with Rancher Fleet. Per-site configuration management, Kubernetes operator for edge CRDs, HashiCorp Vault for secrets, RClone for data sync. Multi-cluster management across geographically distributed customer sites.</p>
+                            </article>
+                        </div>
+                    </div>
+                    <div class="cap-cat">
+                        <div class="cap-cat-head">
+                            <h3 class="cap-cat-name">ML Pipeline &amp; <em>Data Infrastructure</em></h3>
+                            <span class="cap-cat-count">4 entries</span>
+                        </div>
+                        <div class="cap-list">
+                            <article class="cap licensable">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Foundation-to-Edge Auto-Annotation (FAST)</h4>
+                                    <a class="cap-badge licensable" href="mailto:licensing@rios.ai?subject=Licensing inquiry">Licensable<span class="arrow">→</span></a>
+                                    <span class="cap-maturity">Validated</span>
+                                </div>
+                                <p class="cap-desc">Complete pipeline — SAM foundation model auto-annotation → pseudo-labeling → YOLO distillation to edge models. 100× speedup teacher → student. Web console, Docker deployment, 26 validated experiment scripts. Drove weekly automated 7-step retraining of production models.</p>
+                            </article>
+                            <article class="cap open">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Large-Scale Video Annotation</h4>
+                                    <a class="cap-badge open" href="https://github.com/rios/local-video-annotator">Open source<span class="arrow">↗</span></a>
+                                    <span class="cap-maturity">Research</span>
+                                </div>
+                                <p class="cap-desc">Automated pipeline for manufacturing video at TB scale. C++ frame extraction (500+ fps), 246-dimension feature engineering, GPU-accelerated interactive learning, stratified sampling at 1000:1 compression.</p>
+                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/local-video-annotator">local-video-annotator</a> · <a href="https://github.com/rios/ros_interactive_annotator">ros_interactive_annotator</a></div>
+                            </article>
+                            <article class="cap licensable">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Annotation Review &amp; Curation (GRADE)</h4>
+                                    <a class="cap-badge licensable" href="mailto:licensing@rios.ai?subject=Licensing inquiry">Licensable<span class="arrow">→</span></a>
+                                    <span class="cap-maturity">Research</span>
+                                </div>
+                                <p class="cap-desc">Full-stack web app for reviewing ML-generated annotations. Accept / reject workflows, lasso selection, keypoint annotation, COCO export. Closes the human-in-the-loop for auto-annotation pipelines.</p>
+                            </article>
+                            <article class="cap licensable">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Edge Model Deployment</h4>
+                                    <a class="cap-badge licensable" href="mailto:licensing@rios.ai?subject=Licensing inquiry">Licensable<span class="arrow">→</span></a>
+                                    <span class="cap-maturity">Research</span>
+                                </div>
+                                <p class="cap-desc">Model registry with versioned deployment to edge devices. S3 distribution with SHA256 integrity verification. TensorRT optimization for Jetson / CUDA targets. Continuous model updates to 25+ deployed edge clusters.</p>
+                            </article>
+                        </div>
+                    </div>
+                    <div class="cap-cat">
+                        <div class="cap-cat-head">
+                            <h3 class="cap-cat-name">Production <em>Operations</em></h3>
+                            <span class="cap-cat-count">5 entries</span>
+                        </div>
+                        <div class="cap-list">
+                            <article class="cap licensable">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Operational Failure Detection Suite</h4>
+                                    <a class="cap-badge licensable" href="mailto:licensing@rios.ai?subject=Licensing inquiry">Licensable<span class="arrow">→</span></a>
+                                    <span class="cap-maturity">Validated</span>
+                                </div>
+                                <p class="cap-desc">163 systematic experiments, 9 specialized detectors for robotic pick-and-place failures (double picks, partial picks, misalignment). Zero false positives on normal operations, 100% detection on confirmed failures. Interactive threshold tuning UI (SvelteKit + FastAPI). 97.7% false-positive reduction via state-conditional anomaly detection.</p>
+                            </article>
+                            <article class="cap licensable">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Operational Intelligence Platform</h4>
+                                    <a class="cap-badge licensable" href="mailto:licensing@rios.ai?subject=Licensing inquiry">Licensable<span class="arrow">→</span></a>
+                                    <span class="cap-maturity">Production</span>
+                                </div>
+                                <p class="cap-desc">PLC event → synchronized multi-camera video (UniFi Protect NVR integration) for root-cause analysis. Structured failure categories, operator intervention tracking, cross-cluster pod management, Prometheus metrics, production database logging. Central to achieving 80% line availability.</p>
+                            </article>
+                            <article class="cap licensable">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Multi-Robot Operator Interface</h4>
+                                    <a class="cap-badge licensable" href="mailto:licensing@rios.ai?subject=Licensing inquiry">Licensable<span class="arrow">→</span></a>
+                                    <span class="cap-maturity">Production</span>
+                                </div>
+                                <p class="cap-desc">Real-time HMI (Rails 7) for 8-robot operations — safety status, workcell control (start / stop / namespace cycling / go-home), recipe management (3PLY, 4PLY, 5PLY, Double 3PLY), diagnostics. WebSocket to ROS via rosbridge_suite. Primary operator interface for 4-shift, 24/7 production.</p>
+                            </article>
+                            <article class="cap open">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Factory-Floor Kubernetes</h4>
+                                    <a class="cap-badge open" href="https://github.com/rios/rios_github_actions">Open source<span class="arrow">↗</span></a>
+                                    <span class="cap-maturity">Production</span>
+                                </div>
+                                <p class="cap-desc">K3s / Helm deployment across 4 workcells. Earthly hermetic builds, multi-arch Docker images, air-gapped OCI registry with pull-through cache, Tailscale remote access. 40+ PRs merged during live production with same-day deploys.</p>
+                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/rios_github_actions">rios_github_actions</a> · <a href="https://github.com/rios/rios-github-workflow-templates">rios-github-workflow-templates</a> · <a href="https://github.com/rios/ros-focal2noble">ros-focal2noble</a></div>
+                            </article>
+                            <article class="cap licensable">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Edge Health Monitoring</h4>
+                                    <a class="cap-badge licensable" href="mailto:licensing@rios.ai?subject=Licensing inquiry">Licensable<span class="arrow">→</span></a>
+                                    <span class="cap-maturity">Production</span>
+                                </div>
+                                <p class="cap-desc">Camera FOV drift detection via multi-algorithm keypoint tracking, image quality assessment, critical-zone monitoring, ML-based template matching for baseline identification. Proactive issue detection across 25+ deployed edge devices.</p>
+                            </article>
+                        </div>
+                    </div>
+                    <div class="cap-cat">
+                        <div class="cap-cat-head">
+                            <h3 class="cap-cat-name">Published <em>Research</em></h3>
+                            <span class="cap-cat-count">4 entries</span>
+                        </div>
+                        <div class="cap-list">
+                            <article class="cap open">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Transparent Object Reconstruction (TNSR)</h4>
+                                    <a class="cap-badge open" href="https://github.com/rios/TNSR">Open source<span class="arrow">↗</span></a>
+                                    <span class="cap-maturity">Research</span>
+                                </div>
+                                <p class="cap-desc">Neural Surface Refinement for transparent and reflective objects (CVPR 2024). Novel approach to a notoriously difficult 3D reconstruction problem. Foundation for industrial inspection of transparent surfaces.</p>
+                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/TNSR">TNSR</a> · <a href="https://github.com/rios/anu_nerf">anu_nerf</a> · <a href="https://github.com/rios/tnsr-pages">tnsr-pages</a></div>
+                            </article>
+                            <article class="cap open">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">3D Pose Estimation (Pose3R)</h4>
+                                    <a class="cap-badge open" href="https://github.com/rios/Pose3R">Open source<span class="arrow">↗</span></a>
+                                    <span class="cap-maturity">Research</span>
+                                </div>
+                                <p class="cap-desc">Novel architecture for 3D object pose estimation from images. Advances state-of-the-art for robotic manipulation planning.</p>
+                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/Pose3R">Pose3R</a></div>
+                            </article>
+                            <article class="cap open">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Ray Deformation Networks</h4>
+                                    <a class="cap-badge open" href="https://github.com/rios/raydeform-pages">Open source<span class="arrow">↗</span></a>
+                                    <span class="cap-maturity">Research</span>
+                                </div>
+                                <p class="cap-desc">Novel ray-based deformation approach for 3D scene understanding (WACV 2024). Extended 3D perception capabilities for industrial environments.</p>
+                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/raydeform-pages">raydeform-pages</a></div>
+                            </article>
+                            <article class="cap open">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Robotic Grasping (3 papers)</h4>
+                                    <a class="cap-badge open" href="https://github.com/rios/agnet">Open source<span class="arrow">↗</span></a>
+                                    <span class="cap-maturity">Validated</span>
+                                </div>
+                                <p class="cap-desc">Integrated implementation of GR-ConvNet (IROS 2020), MVP Grasp, and Visual Pushing-Grasping — combined into a single production-ready system. Research-to-production pipeline for grasping across object types.</p>
+                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/agnet">agnet</a></div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================================== PHOTO SEPARATOR (bare band, no caption) -->
+        <section
+            class="band band-2 band-separator"
+            aria-hidden="true"
+        ></section>
+
+        <!-- =============================================================== INQUIRIES -->
+        <section class="section contact" id="contact">
+            <div class="wrap">
+                <h2 class="section-title">Inquiries.</h2>
+
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <h3>Open source</h3>
+                        <p>
+                            Filing an issue on the relevant repository is the
+                            fastest path. For anything else open-source
+                            related — questions, contributions, mirroring:
+                        </p>
+                        <a class="email" href="mailto:hello@rios.ai">hello@rios.ai</a>
+                    </div>
+                    <div class="contact-card">
+                        <h3>General inquiries</h3>
+                        <p>
+                            Licensing, acquisition, research partnerships,
+                            data access — everything that isn't open source
+                            routes through here.
+                        </p>
+                        <a class="email" href="mailto:licensing@rios.ai">licensing@rios.ai</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================================== FOOTER -->
+        <footer>
+            <div class="wrap foot-row">
+                <div>
+                    <div class="foot-mark">
+                        RIOS<em> Intelligent Machines</em>
+                    </div>
+                    <div>EST. 2018 · ARCHIVED 2026 · MENLO PARK, CA</div>
+                </div>
+                <div class="foot-links">
+                    <a href="https://github.com/rios">GitHub</a>
+                    <a href="#tiers">Capabilities</a>
+                    <a href="#contact">Inquiries</a>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
