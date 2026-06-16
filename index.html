@@ -1625,7 +1625,7 @@
                                     <span class="cap-maturity">Production</span>
                                 </div>
                                 <p class="cap-desc">ROS / ROS2 drivers for LUCID Triton RGB (Arena SDK), Lucid Helios ToF depth, FLIR Spinnaker, Luxonis OAK-D. Hardware triggering, timestamp filtering, buffered subscriptions with stale-data detection. Deployed across 4 production workcells.</p>
-                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/arena_camera_ros">arena_camera_ros</a> · <a href="https://github.com/rios/arena_camera_ros2">arena_camera_ros2</a> · <a href="https://github.com/rios/rios-depthai-ros">rios-depthai-ros</a> · <a href="https://github.com/rios/spinnaker_camera_ros2">spinnaker_camera_ros2</a> · <a href="https://github.com/rios/camera_control_msgs">camera_control_msgs</a></div>
+                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/arena_camera_ros">arena_camera_ros</a> · <a href="https://github.com/rios/arena_camera_ros2">arena_camera_ros2</a> · <a href="https://github.com/rios/rios-depthai-ros">rios-depthai-ros</a> · <a href="https://github.com/rios/spinnaker_camera_ros2">spinnaker_camera_ros2</a> · <a href="https://github.com/rios/camera_control_msgs">camera_control_msgs</a> · <a href="https://github.com/rios/dx_camera">dx_camera</a> · <a href="https://github.com/rios/dx_depth_camera">dx_depth_camera</a> · <a href="https://github.com/rios/dx_calibration">dx_calibration</a></div>
                             </article>
                             <article class="cap licensable">
                                 <div class="cap-head">
@@ -1657,7 +1657,7 @@
                     <div class="cap-cat" id="cap-motion">
                         <div class="cap-cat-head">
                             <h3 class="cap-cat-name">Robot Control &amp; <em>Motion</em></h3>
-                            <span class="cap-cat-count">7 entries</span>
+                            <span class="cap-cat-count">8 entries</span>
                         </div>
                         <div class="cap-list">
                             <article class="cap licensable">
@@ -1717,14 +1717,23 @@
                                     <span class="cap-maturity">Production</span>
                                 </div>
                                 <p class="cap-desc">Generic motor driver abstractions, feed-hopper control logic, and the interface message packages shared across the dx_* stack — motor commands and status, hopper coordination, common message definitions.</p>
-                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/dx_motor">dx_motor</a> · <a href="https://github.com/rios/dx_motor_driver_msgs">dx_motor_driver_msgs</a> · <a href="https://github.com/rios/dx_msgs">dx_msgs</a> · <a href="https://github.com/rios/hopper_control_msgs">hopper_control_msgs</a></div>
+                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/dx_motor">dx_motor</a> · <a href="https://github.com/rios/dx_motor_driver_msgs">dx_motor_driver_msgs</a> · <a href="https://github.com/rios/dx_msgs">dx_msgs</a> · <a href="https://github.com/rios/dx_behavior_msgs">dx_behavior_msgs</a> · <a href="https://github.com/rios/hopper_control_msgs">hopper_control_msgs</a></div>
+                            </article>
+                            <article class="cap open">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Robot Geometry &amp; Kinematics</h4>
+                                    <a class="cap-badge open" href="https://github.com/rios/dx_geometry">Open source<span class="arrow">↗</span></a>
+                                    <span class="cap-maturity">Production</span>
+                                </div>
+                                <p class="cap-desc">FANUC robot URDF descriptions (LR Mate 200iD/7L, R-1000iA/130F, R-2000iC/220U), MoveIt ikfast kinematics plugins, geometry primitives shared across the dx_* stack. URDFs are independently available from FANUC and ROS-Industrial; this is the integrated RIOS bundle as deployed in production.</p>
+                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/dx_geometry">dx_geometry</a></div>
                             </article>
                         </div>
                     </div>
                     <div class="cap-cat" id="cap-platform">
                         <div class="cap-cat-head">
                             <h3 class="cap-cat-name">Edge AI <em>Platform</em></h3>
-                            <span class="cap-cat-count">8 entries</span>
+                            <span class="cap-cat-count">9 entries</span>
                         </div>
                         <div class="cap-list">
                             <article class="cap open">
@@ -1794,6 +1803,15 @@
                                 </div>
                                 <p class="cap-desc">Low-level glue for the edge stack — pinned CUDA installer scripts, ROS-with-GUI Docker images, Kubernetes NodePort controller for cluster-internal services, file sync for offline-tolerant deployments, and udev rule generation for industrial USB devices.</p>
                                 <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/cuda_installers">cuda_installers</a> · <a href="https://github.com/rios/ros-docker-gui">ros-docker-gui</a> · <a href="https://github.com/rios/rios-nodeport-controller">rios-nodeport-controller</a> · <a href="https://github.com/rios/rios-file-sync">rios-file-sync</a> · <a href="https://github.com/rios/udevcreator">udevcreator</a></div>
+                            </article>
+                            <article class="cap open">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Citadel Foundation Libraries</h4>
+                                    <a class="cap-badge open" href="https://github.com/rios/dx_rios_utils">Open source<span class="arrow">↗</span></a>
+                                    <span class="cap-maturity">Production</span>
+                                </div>
+                                <p class="cap-desc">Shared foundation libraries underneath the dx_* ROS1 stack — Python bindings (pybind11), YAML configuration utilities, ROS communication primitives, event-handling interface, and a rosbridge utility layer. Closure-clean: the rest of the foundation builds without any held package.</p>
+                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/dx_rios_utils">dx_rios_utils</a> · <a href="https://github.com/rios/dx_rios_pybind">dx_rios_pybind</a> · <a href="https://github.com/rios/dx_rios_yaml">dx_rios_yaml</a> · <a href="https://github.com/rios/dx_rios_communication">dx_rios_communication</a> · <a href="https://github.com/rios/dx_events">dx_events</a> · <a href="https://github.com/rios/rios-ros-utilities">rios-ros-utilities</a></div>
                             </article>
                         </div>
                     </div>
@@ -1867,7 +1885,7 @@
                     <div class="cap-cat" id="cap-operations">
                         <div class="cap-cat-head">
                             <h3 class="cap-cat-name">Production <em>Operations</em></h3>
-                            <span class="cap-cat-count">6 entries</span>
+                            <span class="cap-cat-count">7 entries</span>
                         </div>
                         <div class="cap-list">
                             <article class="cap licensable">
@@ -1919,6 +1937,15 @@
                                 </div>
                                 <p class="cap-desc">Operator-facing infrastructure — rosbridge load tester for HMI capacity planning, Slab → Notion migration tool that moved the entire engineering knowledge base, Docusaurus templates for product documentation sites.</p>
                                 <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/rosbridge-loadtester">rosbridge-loadtester</a> · <a href="https://github.com/rios/slab_to_notion_importer">slab_to_notion_importer</a> · <a href="https://github.com/rios/docusaurus-templates">docusaurus-templates</a></div>
+                            </article>
+                            <article class="cap open">
+                                <div class="cap-head">
+                                    <h4 class="cap-name">Foundation Diagnostics &amp; Ground-Truth</h4>
+                                    <a class="cap-badge open" href="https://github.com/rios/dx_rate_diagnostics">Open source<span class="arrow">↗</span></a>
+                                    <span class="cap-maturity">Production</span>
+                                </div>
+                                <p class="cap-desc">ROS rate diagnostics for monitoring topic publication health across the dx_* stack, plus a ground-truth testing harness for production validation. Foundation tooling for the operations team running 24/7 production.</p>
+                                <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/dx_rate_diagnostics">dx_rate_diagnostics</a> · <a href="https://github.com/rios/dx_ground_truth_testing">dx_ground_truth_testing</a></div>
                             </article>
                         </div>
                     </div>
