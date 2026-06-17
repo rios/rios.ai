@@ -1751,7 +1751,7 @@
                                     <a class="cap-badge open" href="https://github.com/rios/omni-agent">Open source<span class="arrow">↗</span></a>
                                     <span class="cap-maturity">Validated</span>
                                 </div>
-                                <p class="cap-desc">Multi-LLM agent studio (OpenAI, Anthropic, Ollama) for industrial automation workflows. TypeScript / Next.js. Composes with the Omni-Vision backend over MCP — agents call vision tools to drive inspection, analysis, and operator-facing reasoning on the factory floor.</p>
+                                <p class="cap-desc">Multi-LLM agent studio (OpenAI, Anthropic, Ollama) and interactive video-analysis app for industrial automation workflows. Upload video, draw monitoring zones on an interactive canvas, analyze content through AI chat. Object detection runs through MCP with six prompt modes — prompt-free, text, and visual cross-image reference — at real-time WebSocket frame rates. TypeScript / Next.js. Composes with the Omni-Vision backend so agents can call vision tools to drive inspection, analysis, and operator-facing reasoning on the factory floor.</p>
                                 <div class="cap-repos"><span class="arrow">→</span><a href="https://github.com/rios/omni-agent">omni-agent</a></div>
                             </article>
                             <article class="cap licensable">
@@ -1760,15 +1760,15 @@
                                     <a class="cap-badge licensable" href="mailto:licensing@rios.ai?subject=Licensing inquiry">Licensable<span class="arrow">→</span></a>
                                     <span class="cap-maturity">Production</span>
                                 </div>
-                                <p class="cap-desc">Containerized edge agent integrating camera management, GPU inference, ROS2, MQTT, telemetry, and S3 sync. 15 configurable worker types via YAML. Runs on NVIDIA Jetson Orin. Deployed across 25+ edge clusters with 24/7 operation and LTE fallback.</p>
+                                <p class="cap-desc">Containerized edge agent for industrial deployments — camera management, GPU inference (YOLO via Ultralytics / TensorRT), ROS2, MQTT, live streaming, telemetry. Two internal frameworks underneath: a worker-orchestration engine (15+ YAML-configured worker types wired into a channel-based pipeline) and a high-performance C++ data/inference engine. Runs on industrial-rugged NVIDIA Jetson Orin hardware (CERA) — ≥30 fps capture, up to a week of onboard offline storage, NVIDIA DeepStream / GStreamer real-time inference, Allen-Bradley / EtherNet-IP PLC integration, LTE fallback. Deployed under Helm-managed clusters across 25+ edge sites.</p>
                             </article>
                             <article class="cap licensable">
                                 <div class="cap-head">
-                                    <h4 class="cap-name">No-Code Event Logic Builder</h4>
+                                    <h4 class="cap-name">Sense &amp; Respond — No-Code Event Logic</h4>
                                     <a class="cap-badge licensable" href="mailto:licensing@rios.ai?subject=Licensing inquiry">Licensable<span class="arrow">→</span></a>
                                     <span class="cap-maturity">Validated</span>
                                 </div>
-                                <p class="cap-desc">Visual interface for defining regions of interest, ML-based event triggers, and KPI reports. Deploys custom logic to edge devices with output to PLC, ROS2, or HTTP — without code. Customer-configured monitoring across wood products, metals, and construction materials.</p>
+                                <p class="cap-desc">Visual builder where customers define regions of interest (box, polygon, line), set ML-prediction-based event triggers, and generate KPI reports — turning raw model predictions into structured semantic events without writing code, then deploying that logic straight to the edge. Output to PLC, ROS2, or HTTP. Customer-configured monitoring across wood products, metals, and construction materials.</p>
                             </article>
                             <article class="cap licensable">
                                 <div class="cap-head">
@@ -1780,11 +1780,11 @@
                             </article>
                             <article class="cap licensable">
                                 <div class="cap-head">
-                                    <h4 class="cap-name">Cloud-to-Edge Deployment Pipeline</h4>
+                                    <h4 class="cap-name">Cloud Platform &amp; Operations</h4>
                                     <a class="cap-badge licensable" href="mailto:licensing@rios.ai?subject=Licensing inquiry">Licensable<span class="arrow">→</span></a>
                                     <span class="cap-maturity">Production</span>
                                 </div>
-                                <p class="cap-desc">Helm-based GitOps deployment with Rancher Fleet. Per-site configuration management, Kubernetes operator for edge CRDs, HashiCorp Vault for secrets, RClone for data sync. Multi-cluster management across geographically distributed customer sites.</p>
+                                <p class="cap-desc">Multi-tenant web and mobile platform organized as Company → Sites → Workcell Groups → Clusters → Camera Feeds, with role-based access, deployment history, drift indicators, configuration management, and reporting. Underneath: Helm-based GitOps with Rancher Fleet, a Kubernetes operator for edge CRDs, HashiCorp Vault for secrets, and RClone for data sync — keeping every cluster in sync with cloud-managed configuration across geographically distributed customer sites.</p>
                             </article>
                             <article class="cap open">
                                 <div class="cap-head">
@@ -1827,15 +1827,15 @@
                                     <a class="cap-badge licensable" href="mailto:licensing@rios.ai?subject=Licensing inquiry">Licensable<span class="arrow">→</span></a>
                                     <span class="cap-maturity">Validated</span>
                                 </div>
-                                <p class="cap-desc">Complete pipeline — SAM foundation model auto-annotation → pseudo-labeling → YOLO distillation to edge models. 100× speedup teacher → student. Web console, Docker deployment, 26 validated experiment scripts. Drove weekly automated 7-step retraining of production models.</p>
+                                <p class="cap-desc">End-to-end pipeline from SAM3 foundation-model auto-annotation → pseudo-labeling → YOLO distillation to edge models, with roughly 100× speedup from teacher to edge student. A self-improving annotation loop (auto-annotate with fine-tuned checkpoints → human review/correction → fine-tune → iterate) runs as a weekly 7-step automated process: validate → annotate → curate → export → train → evaluate → report. Production YOLO11-seg models reach mAP 0.778 (modal), 0.651 (amodal), and 0.923 (2-class) across a 10-class wood/defect ontology, with versioned edge deployment and integrity verification. 50+ versioned datasets form a compounding data flywheel behind every production model.</p>
                             </article>
                             <article class="cap licensable">
                                 <div class="cap-head">
-                                    <h4 class="cap-name">Large-Scale Video Annotation</h4>
+                                    <h4 class="cap-name">Foreman — Large-Scale Video Auto-Labeling</h4>
                                     <a class="cap-badge licensable" href="mailto:licensing@rios.ai?subject=Licensing inquiry">Licensable<span class="arrow">→</span></a>
                                     <span class="cap-maturity">Research</span>
                                 </div>
-                                <p class="cap-desc">Automated pipeline for manufacturing video at TB scale. C++ frame extraction (500+ fps), 246-dimension feature engineering, GPU-accelerated interactive learning, stratified sampling at 1000:1 compression.</p>
+                                <p class="cap-desc">Automated annotation pipeline for manufacturing video at TB scale. C++ frame extraction at 500+ fps across 64 cores, semantic deduplication, 246-dimension feature engineering, and GPU-accelerated interactive learning via a web UI for tool-assisted labeling (click / rect / polygon with live retraining). Intelligent stratified sampling compresses millions of frames at 1000:1, then generates YOLO training sets with teacher/student distillation.</p>
                             </article>
                             <article class="cap licensable">
                                 <div class="cap-head">
