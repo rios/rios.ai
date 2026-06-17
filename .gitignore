@@ -1,3 +1,6 @@
 .DS_Store
 *.swp
 node_modules/
+
+# Internal content-source brief — background context only, must never ship to the public site
+AGENTS_AND_ML_PIPELINE_CONTENT.md
